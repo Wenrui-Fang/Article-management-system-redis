@@ -28,4 +28,6 @@ router.get("/list", article_handler.getArticleLists);
 
 router.get("/delete/:id", article_handler.deleteArticleById);
 
+router.get("/date", article_handler.newest_articles);
+
 module.exports = router;
