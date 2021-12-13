@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Information</title>
+    <!-- Import layui CSS -->
+    <link rel="stylesheet" href="../assets/lib/layui/css/layui.css" />
+    <!-- Import my own CSS -->
+    <link rel="stylesheet" href="../assets/css/user/user_info.css" />
+  </head>
+  <body>
+    <!-- card area -->
+    <div class="layui-card">
+      <div class="layui-card-header">Modify user information</div>
+      <div class="layui-card-body">
+        <!-- form area -->
+        <form class="layui-form" lay-filter="formUserInfo">
+          <!-- hiden area -->
+          <input type="hidden" name="userId" value="" />
+          <div class="layui-form-item">
+            <label class="layui-form-label">username</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="userName"
+                required
+                lay-verify="required"
+                placeholder="Please input the username"
+                autocomplete="off"
+                class="layui-input"
+                readonly
+              />
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">nickname</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="nickName"
+                required
+                lay-verify="required|nickname"
+                placeholder="Please input the nickname"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">email</label>
+            <div class="layui-input-block">
+              <input
+                type="text"
+                name="email"
+                required
+                lay-verify="required|email"
+                placeholder="Please input the email"
+                autocomplete="off"
+                class="layui-input"
+              />
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-input-block">
+              <button class="layui-btn" lay-submit lay-filter="formDemo">
+                Submit
+              </button>
+              <button
+                type="reset"
+                class="layui-btn layui-btn-primary"
+                id="btnReset"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Import layui.js -->
+    <script src="../assets/lib/layui/layui.all.js"></script>
+    <!-- Import jquery.js -->
+    <script src="../assets/lib/jquery.js"></script>
+    <!-- Import basiAPI -->
+    <script src="../assets/js/baseAPI.js"></script>
+    <!-- Import my js -->
+    <script src="../assets/js/user/user_info.js"></script>
+  </body>
+</html>

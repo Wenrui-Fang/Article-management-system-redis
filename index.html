@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+
+    <link rel="stylesheet" href="frontend/assets/lib/layui/css/layui.css" />
+
+    <link rel="stylesheet" href="frontend/assets/fonts/iconfont.css" />
+
+    <link rel="stylesheet" href="frontend/assets/css/index.css" />
+  </head>
+  <body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+      <div class="layui-header">
+        <div class="layui-logo">
+          <img src="frontend/assets/images/logo_smail.png" alt="" />
+        </div>
+
+        <ul class="layui-nav layui-layout-right">
+          <li class="layui-nav-item">
+            <a href="javascript:;" class="userinfo">
+              <img src="http://t.cn/RCzsdCq" class="layui-nav-img" />
+              <!-- <span class="text-avatar">A</span> -->
+              Personal center
+            </a>
+            <dl class="layui-nav-child">
+              <dd>
+                <a href="frontend/user/user_info.html" target="fm">Portfolio</a>
+              </dd>
+              <dd>
+                <a href="frontend/user/user_pwd.html" target="fm"
+                  >Reset Password</a
+                >
+              </dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item">
+            <a href="javascript:;" id="btnLogout"
+              ><span class="iconfont icon-tuichu"></span>Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+          <div class="userinfo">
+            <img src="http://t.cn/RCzsdCq" class="layui-nav-img" />
+            <!-- <span class="text-avatar">A</span> -->
+            <span id="welcome">Welcome</span>
+          </div>
+
+          <ul class="layui-nav layui-nav-tree" lay-shrink="all">
+            <li class="layui-nav-item layui-this">
+              <a href="frontend/home/dashboard.html" target="fm"
+                ><span class="iconfont icon-home"></span>Home</a
+              >
+            </li>
+            <li class="layui-nav-item">
+              <a class="" href="javascript:;"
+                ><span class="iconfont icon-16"></span>Article management</a
+              >
+              <dl class="layui-nav-child">
+                <dd>
+                  <a href="frontend/article/art_cate.html" target="fm"
+                    ><i class="layui-icon layui-icon-app"></i>Article
+                    Category</a
+                  >
+                </dd>
+                <dd>
+                  <a href="frontend/article/art_list.html" target="fm"
+                    ><i class="layui-icon layui-icon-app"></i>Article List</a
+                  >
+                </dd>
+                <dd>
+                  <a href="frontend/article/art_pub.html" target="fm"
+                    ><i class="layui-icon layui-icon-app"></i>Post Article</a
+                  >
+                </dd>
+              </dl>
+            </li>
+            <li class="layui-nav-item">
+              <a href="javascript:;"
+                ><span class="iconfont icon-user"></span>Personal Center</a
+              >
+              <dl class="layui-nav-child">
+                <dd>
+                  <a href="frontend/user/user_info.html" target="fm"
+                    ><i class="layui-icon layui-icon-app"></i>Portfolio</a
+                  >
+                </dd>
+                <dd>
+                  <a href="frontend/user/user_pwd.html" target="fm"
+                    ><i class="layui-icon layui-icon-app"></i>Rest Password</a
+                  >
+                </dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="layui-body">
+        <iframe
+          name="fm"
+          src="frontend/home/dashboard.html"
+          frameborder="0"
+        ></iframe>
+      </div>
+
+      <div class="layui-footer">© hjx and fwr</div>
+    </div>
+
+    <script src="frontend/assets/lib/layui/layui.all.js"></script>
+
+    <script src="frontend/assets/lib/jquery.js"></script>
+
+    <script src="frontend/assets/js/baseAPI.js"></script>
+
+    <script src="frontend/assets/js/index.js"></script>
+  </body>
+</html>

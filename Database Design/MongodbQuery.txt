@@ -1,0 +1,20 @@
+1. Get all articles whose status are draft.
+db.getCollection("articles").aggregate([{ $match: { status: "draft" } },])
+
+2. Get three articles whose status are published.
+db.getCollection("articles").aggregate([{ $match: { status: "published" } }, {$limit: 3}])
+
+3. Count the number of articles for the user with userId=1.
+db.getCollection("articles").find({ "user.userId": "1" }).count()
+
+4. Set the "isDelete" of the article whose articleID=1 to true.
+db.getCollection("articles").aggregate([{$match: {articleId: "1"}}, {$set: {isDelete: true}}])
+
+5. Find articles which are written by the user(userId=1) and belong to the computer category.
+db.getCollection("articles").find(
+    {
+        $and: [
+            { "user.userId": "1" }, { "category.name": "computer" }
+        ]
+    }
+)
