@@ -1,0 +1,51 @@
+[{
+  "_id": {
+    "$oid": "619c5b5375777fbf467a55e7"
+  },
+  "userId": "2",
+  "userName": "bbb",
+  "password": "123456",
+  "nickName": "BBB",
+  "email": "bbb@gmail.com",
+  "userPicture": null
+},{
+  "_id": {
+    "$oid": "619c5b5375777fbf467a55e8"
+  },
+  "userId": "ef68f598-1f9b-43ee-be93-c229c21b03f8",
+  "userName": "aaab",
+  "password": "$2a$10$JkxV3tDunf65ze2IG/XEMetu4DvVykRWbcaa7vRraP4DdmK4HfsZO",
+  "nickName": null,
+  "email": null,
+  "userPicture": null
+},{
+  "_id": {
+    "$oid": "619c5b5375777fbf467a55e9"
+  },
+  "userId": "c7a244c6-4fa0-4d36-90cf-b85c9b85d40f",
+  "userName": "aaaaa",
+  "password": "$2a$10$T/akD3ma4K3i28KJQMkWNOR63qrd.E6xarJefzfdNqZcMotNJER4m",
+  "nickName": null,
+  "email": null,
+  "userPicture": null
+},{
+  "_id": {
+    "$oid": "619c5b5375777fbf467a55ea"
+  },
+  "userId": "1",
+  "userName": "aaa",
+  "password": "123456",
+  "nickName": "AAA",
+  "email": "aaa@gmail.com",
+  "userPicture": null
+},{
+  "_id": {
+    "$oid": "619c5b5375777fbf467a55eb"
+  },
+  "userId": "3",
+  "userName": "ccc",
+  "password": "123456",
+  "nickName": "CCC",
+  "email": "ccc@gmail.com",
+  "userPicture": null
+}]

@@ -1,0 +1,23 @@
+[
+  {
+    "cateId": "1",
+    "name": "computer",
+    "alias": "cs",
+    "isDelete": false,
+    "userId": "1"
+  },
+  {
+    "cateId": "2",
+    "name": "mechanics",
+    "alias": "me",
+    "isDelete": false,
+    "userId": "2"
+  },
+  {
+    "cateId": "3",
+    "name": "chemistry",
+    "alias": "huaxue",
+    "isDelete": false,
+    "userId": "3"
+  }
+]

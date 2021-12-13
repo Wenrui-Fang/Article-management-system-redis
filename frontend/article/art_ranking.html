@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artical Cate Management</title>
+    <link rel="stylesheet" href="/frontend/assets/lib/layui/css/layui.css" />
+    <link rel="stylesheet" href="/frontend/assets/css/article/art_cate.css" />
+</head>
+  <body>
+      <div class="layui-card">
+          <div class="layui-card-header">
+            <span>Article Ranking</span>
+          </div>
+          <div class="layui-card-body">
+            <table class="layui-table">
+              <colgroup>
+                <col />
+                <col />
+                <col width="200" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>Category Name</th>
+                  <th>Number of Articles</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+       <!-- 表格数据的模板 -->
+      <script type="text/html" id="tpl-table">
+        {{each data}}
+        <tr>
+          <td>{{$value.value}}</td>
+          <td>{{$value.score}}</td>
+        </tr>
+        {{/each}}
+      </script>
+        <!-- 导入 layui 的js -->
+        <script src="/frontend/assets/lib/layui/layui.all.js"></script>
+        <!-- 导入 jQuery -->
+        <script src="/frontend/assets/lib/jquery.js"></script>
+        <!-- 导入 baseAPI -->
+        <script src="/frontend/assets/js/baseAPI.js"></script>
+        <!-- 导入模板引擎 -->
+        <script src="/frontend/assets/lib/template-web.js"></script>
+        <!-- 导入自己的 js -->
+        <script src="/frontend/assets/js/article/art_ranking.js"></script>
+  </body>
+</html>
