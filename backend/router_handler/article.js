@@ -46,6 +46,7 @@ exports.addArticle = (req, res) => {
   });
 };
 
+
 // Processing function of getting the article list data
 exports.getArticleLists = (req, res) => {
   MongoClient.connect(url, function (err, db) {
@@ -125,6 +126,67 @@ exports.deleteArticleById = (req, res) => {
     });
   });
 };
+
+exports.rankingArticleNumOfArticle = (req, res) => {
+  setUpData(res);
+};
+
+async function setUpData(res) {
+  let client;
+  client = createClient();
+  client.on("error", (err) => console.log("Redis Client Error", err));
+  await client.connect();
+  console.log("connected");
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("articleSystem");
+
+    var operation = [
+      {
+        $lookup: {
+          from: "category",
+          localField: "cateId",
+          foreignField: "cateId",
+          as: "category",
+        },
+      },
+      { $match: { isDelete: false } },
+    ];
+    const value = new Set();
+    dbo.collection("article").aggregate(operation).toArray(async function (err, results) {
+      if (err) throw err;
+      for (let i = 0; i < results.length; i++) {
+        let a = results[i].category[0].name;
+        value.add(a);
+        await client.set(a, "0");
+      }
+      for (let i = 0; i < results.length; i++) {
+        let a = results[i].category[0].name;
+        await client.incr(a);
+        results[i].category = a;
+      }
+      db.close();
+    });
+    setTimeout(async function () {
+      for (let item of value) {
+        let result = await client.get(item);
+        client.zAdd(`leaderboard`, {
+          score: result,
+          value: item
+        })
+      }
+      var final = await client.zRangeWithScores("leaderboard", -10, -1, `withscores`);
+      console.log(final);
+      res.send({
+        status: 0,
+        message: "Get the article list successfully!",
+        data: final,
+      });
+
+      await client.quit();
+    }, 1500);
+  });
+}
 
 exports.newest_articles = (req, res) => {
   getNewest(req, res);
