@@ -9,7 +9,7 @@ Jinxin Hu:
 	Completed other auxiliary functions like getting user basic information and updating password;
 	
 	Build art_ranking page for find the number of articles filter by category（give the top 10 categories which have the most articles) 
-	by using redis sorted set, string and set ;
+	by using redis sorted set and string;
 
 Wenrui Fang:
 
