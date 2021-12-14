@@ -1,6 +1,6 @@
 
 
-# Article management system(MongoDB)
+# Article management system(MongoDB and Redis)
 
 Jinxin Hu:
 
