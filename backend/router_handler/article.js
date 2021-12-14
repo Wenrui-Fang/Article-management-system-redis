@@ -39,7 +39,6 @@ exports.addArticle = (req, res) => {
       userId: articleInfo.userId,
       cateId: articleInfo.cateId,
     };
-    // console.log(req);
     dbo.collection("article").insertOne(document, function (err, results) {
       if (err) throw err;
       db.close();
@@ -47,7 +46,8 @@ exports.addArticle = (req, res) => {
   });
 };
 
-// Get the processing function of the article list data
+
+// Processing function of getting the article list data
 exports.getArticleLists = (req, res) => {
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
@@ -185,5 +185,130 @@ async function setUpData(res) {
 
       await client.quit();
     }, 1500);
+  });
+}
+
+exports.newest_articles = (req, res) => {
+  getNewest(req, res);
+};
+
+async function getNewest(req, res) {
+  MongoClient.connect(url, async function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("articleSystem");
+    if (req.query.cate_id === "") {
+      let client;
+      let count = 0;
+      try {
+        client = createClient();
+        client.on("error", (err) => console.log("Redis Client Error", err));
+        await client.connect();
+        console.log("Redis connected");
+
+        var operation = [
+          {
+            $lookup: {
+              from: "category",
+              localField: "cateId",
+              foreignField: "cateId",
+              as: "category",
+            },
+          },
+          { $match: { isDelete: false } },
+          {
+            $sort: {
+              pubDate: -1,
+            },
+          },
+          {
+            $limit: 10,
+          },
+        ];
+        // let count = 0;
+        await dbo
+          .collection("article")
+          .aggregate(operation)
+          .forEach(async function (result) {
+            result.category = result.category[0].name;
+            count = count + 1;
+            await client.hSet(`newestArticles:${count}`, {
+              title: result.title,
+              category: result.category,
+              pubDate: result.pubDate,
+              status: result.status,
+            });
+          });
+          await db.close();
+      } finally {
+        let final = new Array();
+        for (let i = 0; i < count; i++) {
+          final[i] = await client.hGetAll(`newestArticles:${i + 1}`);
+        }
+        res.send({
+          status: 0,
+          message: "Get the article list successfully!",
+          data: final,
+        });
+        await client.quit();
+      }
+    } else {
+      let client;
+      let count = 0;
+      try {
+        client = createClient();
+        client.on("error", (err) => console.log("Redis Client Error", err));
+        await client.connect();
+        console.log("Redis connected");
+
+      var operation = [
+        {
+          $lookup: {
+            from: "category",
+            localField: "cateId",
+            foreignField: "cateId",
+            as: "category",
+          },
+        },
+        { $match: { isDelete: false, cateId: req.query.cate_id } },
+        {
+          $sort: {
+            pubDate: -1,
+          },
+        },
+        {
+          $limit: 5,
+        },
+      ];
+
+      // let count = 0;
+      await dbo
+        .collection("article")
+        .aggregate(operation)
+        .forEach(async function (result) {
+          result.category = result.category[0].name;
+          count = count + 1;
+          console.log(count);
+          console.log(result);
+          await client.hSet(`newestArticles:${count}`, {
+            title: result.title,
+            category: result.category,
+            pubDate: result.pubDate,
+            status: result.status,
+          });
+        });
+      } finally {
+        let final = new Array();
+        // Must consider a situation that the number of articles is smaller than the "limit" number.
+        for (let i = 0; i < count; i++) {
+          final[i] = await client.hGetAll(`newestArticles:${i + 1}`);
+        }
+        res.send({
+          status: 0,
+          message: "Get the article list successfully!",
+          data: final,
+        });
+        await client.quit();
+      }
+    }
   });
 }
