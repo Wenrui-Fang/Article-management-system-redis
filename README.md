@@ -77,13 +77,40 @@ To implement the newest articles I will use a Redis HashMap with key "newestArti
 
 Download and install [MongoDB](https://docs.mongodb.com/manual/installation/) follow this instruction
 
-Import the file using mongoimport
+Start mongodb (mac) 
 
 ```
-mongoimport --db articleSystem --collection category --file article.json --jsonArray   
-mongoimport --db articleSystem --collection category --file articles.json --jsonArray   
+brew services start mongodb-community@4.4
+```
+
+Import the file using mongoimport from json folder
+
+```
+mongoimport --db articleSystem --collection category --file article.json --jsonArray    
 mongoimport --db articleSystem --collection category --file category.json --jsonArray   
 mongoimport --db articleSystem --collection category --file user.json --jsonArray   
+```
+
+Download redis from Homebrew and run it.
+
+```
+brew install redis
+```
+
+```
+redis-cli ping
+```
+
+```
+brew services start redis
+```
+
+```
+redis-server
+```
+
+```
+redis-cli
 ```
 
 Download nodejs and install
