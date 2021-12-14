@@ -45,7 +45,6 @@
               <th>Type</th>
               <th>Issuing Time</th>
               <th>Status</th>
-              <th>Operation</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -63,16 +62,6 @@
         <td>{{$value.category}}</td>
         <td>{{$value.pubDate|dataFormat}}</td>
         <td>{{$value.status}}</td>
-        <td>
-          <button type="button" class="layui-btn layui-btn-xs">edit</button>
-          <button
-            type="button"
-            class="layui-btn layui-btn-danger layui-btn-xs btn-delete"
-            data-id="{{$value.articleId}}"
-          >
-            delete
-          </button>
-        </td>
       </tr>
       {{/each}}
     </script>
