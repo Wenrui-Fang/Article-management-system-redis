@@ -1,0 +1,35 @@
+[
+  {
+    "_id": {
+      "$oid": "619c5b5375777fbf467a55e7"
+    },
+    "userId": "2",
+    "userName": "bbb",
+    "password": "123456",
+    "nickName": "BBB",
+    "email": "bbb@gmail.com",
+    "userPicture": null
+  },
+  {
+    "_id": {
+      "$oid": "619c5b5375777fbf467a55ea"
+    },
+    "userId": "1",
+    "userName": "aaa",
+    "password": "123456",
+    "nickName": "AAA",
+    "email": "aaa@gmail.com",
+    "userPicture": null
+  },
+  {
+    "_id": {
+      "$oid": "619c5b5375777fbf467a55eb"
+    },
+    "userId": "3",
+    "userName": "ccc",
+    "password": "123456",
+    "nickName": "CCC",
+    "email": "ccc@gmail.com",
+    "userPicture": null
+  }
+]

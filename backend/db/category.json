@@ -1,0 +1,46 @@
+[{
+  "_id": {
+    "$oid": "619c7905b52794052d73f34b"
+  },
+  "cateId": "1",
+  "name": "computer",
+  "alias": "cs",
+  "isDelete": false,
+  "userId": "1"
+},{
+  "_id": {
+    "$oid": "619c7905b52794052d73f34c"
+  },
+  "cateId": "2",
+  "name": "mechanics",
+  "alias": "me",
+  "isDelete": false,
+  "userId": "2"
+},{
+  "_id": {
+    "$oid": "619c7905b52794052d73f34d"
+  },
+  "cateId": "3",
+  "name": "chemistry",
+  "alias": "huaxue",
+  "isDelete": false,
+  "userId": "3"
+},{
+  "_id": {
+    "$oid": "619cb9ba2e361a673216d6d7"
+  },
+  "cateId": "188096c1-c0ef-461f-9bba-da97ae983021",
+  "name": "z",
+  "alias": "z",
+  "isDelete": true,
+  "userId": "b865bc10-bc08-413d-9189-bdbae671a8f2"
+},{
+  "_id": {
+    "$oid": "61b703bd2e7cfc1a718f2e0f"
+  },
+  "cateId": "edb54f5e-3d6f-47fb-bfe2-d2a003bc8111",
+  "name": "enviroment",
+  "alias": "huanjing",
+  "isDelete": false,
+  "userId": "2ba669b8-f9a8-44a8-8947-5f4401b0b672"
+}]

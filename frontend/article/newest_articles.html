@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/frontend/assets/lib/layui/css/layui.css" />
+    <link rel="stylesheet" href="/frontend/assets/css/article/art_list.css" />
+  </head>
+  <body>
+    <!-- 卡片区域 -->
+    <div class="layui-card">
+      <div class="layui-card-header">Newest Article List</div>
+      <div class="layui-card-body">
+        <!-- 筛选区域 -->
+        <form class="layui-form" id="form-search">
+          <div class="layui-form-item layui-inline">
+            <select name="cate_id"></select>
+          </div>
+          <div class="layui-form-item layui-inline">
+            <select name="state">
+              <option value="">all status</option>
+              <option value="published">published</option>
+              <option value="draft">draft</option>
+            </select>
+          </div>
+          <div class="layui-form-item layui-inline">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">
+              Select
+            </button>
+          </div>
+        </form>
+        <!-- 列表区域 -->
+        <table class="layui-table">
+          <colgroup>
+            <col />
+            <col width="150" />
+            <col width="180" />
+            <col width="150" />
+            <col width="150" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Article title</th>
+              <th>Type</th>
+              <th>Issuing Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <!-- 分页区域 -->
+        <div id="pageBox"></div>
+      </div>
+    </div>
+
+    <!-- 列表数据的模板引擎 -->
+    <script type="text/html" id="tpl-table">
+      {{each data}}
+      <tr>
+        <td>{{$value.title}}</td>
+        <td>{{$value.category}}</td>
+        <td>{{$value.pubDate|dataFormat}}</td>
+        <td>{{$value.status}}</td>
+      </tr>
+      {{/each}}
+    </script>
+
+    <!-- 分类可选项的模板结构 -->
+    <script type="text/html" id="tpl-cate">
+      <option value="">All Type</option>
+      {{each data}}
+      <option value="{{$value.cateId}}">{{$value.name}}</option>
+      {{/each}}
+    </script>
+
+    <!-- 导入第三方的 JS 插件 -->
+    <script src="/frontend/assets/lib/layui/layui.all.js"></script>
+    <script src="/frontend/assets/lib/jquery.js"></script>
+    <script src="/frontend/assets/js/baseAPI.js"></script>
+    <script src="/frontend/assets/lib/template-web.js"></script>
+    <!-- 导入自己的 JS 脚本 -->
+    <script src="/frontend/assets/js/article/newest_articles.js"></script>
+  </body>
+</html>

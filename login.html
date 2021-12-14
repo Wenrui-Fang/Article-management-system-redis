@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in/ Sign on</title>
+    <!-- Import LayUI style -->
+    <link rel="stylesheet" href="./frontend/assets/lib/layui/css/layui.css" />
+    <link rel="stylesheet" href="./frontend/assets/lib/layui/css/layui.css" />
+    <!-- Import your own style sheet -->
+    <link rel="stylesheet" href="./frontend/assets/css/login.css" />
+  </head>
+  <body>
+    <!-- Logo area on the head -->
+    <div class="layui-main">
+      <img src="./frontend/assets/images/logo_en.png" alt="" />
+    </div>
+
+    <!-- Log in to the registration area -->
+    <div class="loginAndRegBox">
+      <div class="title-box"></div>
+      <!-- Login div -->
+      <div class="login-box">
+        <!-- Login form -->
+        <form class="layui-form" id="form_login">
+          <!-- username -->
+          <div class="layui-form-item">
+            <i class="layui-icon layui-icon-username"></i>
+            <input
+              type="text"
+              name="username"
+              required
+              lay-verify="required"
+              placeholder="Please Enter Username"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+          <!-- password -->
+          <div class="layui-form-item">
+            <i class="layui-icon layui-icon-password"></i>
+            <input
+              type="password"
+              name="password"
+              required
+              lay-verify="required|pwd"
+              placeholder="Please Enter Password"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+          <!-- Login button-->
+          <div class="layui-form-item">
+            <!-- Note: The difference between the form submit button and the normal button is the lay-submit attribute -->
+            <button
+              class="layui-btn layui-btn-fluid layui-btn-normal"
+              lay-submit
+            >
+              Sign in
+            </button>
+          </div>
+          <div class="layui-form-item links">
+            <a href="javascript:;" id="link_reg">Sign On</a>
+          </div>
+        </form>
+      </div>
+      <!-- Registered div -->
+      <div class="reg-box">
+        <!-- Import your own JavaScript script -->
+        <form class="layui-form" id="form_reg">
+          <!-- Username -->
+          <div class="layui-form-item">
+            <i class="layui-icon layui-icon-username"></i>
+            <input
+              type="text"
+              name="username"
+              required
+              lay-verify="required"
+              placeholder="Please Enter Username"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+          <!-- Password -->
+          <div class="layui-form-item">
+            <i class="layui-icon layui-icon-password"></i>
+            <input
+              type="password"
+              name="password"
+              required
+              lay-verify="required|pwd"
+              placeholder="Please Enter Password"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+          <!-- Password confirmation box -->
+          <div class="layui-form-item">
+            <i class="layui-icon layui-icon-password"></i>
+            <input
+              type="password"
+              name="repassword"
+              required
+              lay-verify="required|pwd|repwd"
+              placeholder="Re-enter Password"
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+          <!-- Register button -->
+          <div class="layui-form-item">
+            <!-- Note: The difference between the form submit button and the normal button is the lay-submit attribute -->
+            <button
+              class="layui-btn layui-btn-fluid layui-btn-normal"
+              lay-submit
+            >
+              Sign on
+            </button>
+          </div>
+          <div class="layui-form-item links">
+            <a href="javascript:;" id="link_login">Sign in</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Import Layui's JS file -->
+    <script src="./frontend/assets/lib/layui/layui.all.js"></script>
+    <!-- Import JQuery -->
+    <script src="./frontend/assets/lib/jquery.js"></script>
+    <!-- Import your own packaged baseAPI.js -->
+    <script src="./frontend/assets/js/baseAPI.js"></script>
+    <script src="./frontend/assets/js/login.js"></script>
+  </body>
+</html>
