@@ -127,6 +127,40 @@ exports.deleteArticleById = (req, res) => {
   });
 };
 
+exports.deleteArticleRankingById = (req, res) => {
+  // MongoClient.connect(url, function (err, db) {
+  //   if (err) throw err;
+  //   var dbo = db.db("articleSystem");
+  //   var query = { articleId: req.params.id };
+  //   var update = { $set: { isDelete: true } };
+  //   dbo.collection("article").updateOne(query, update, function (err, results) {
+  //     if (err) throw err;
+  //     res.cc("The article was deleted successfully!", 0);
+  //     db.close();
+  //   });
+  // });
+  delRanking(req, res);
+
+};
+
+async function delRanking(req, res) {
+  let client;
+  client = createClient();
+  client.on("error", (err) => console.log("Redis Client Error", err));
+  await client.connect();
+  await client.zRem(`leaderboard`, `${req.params.id}`)
+  setTimeout(async function () {
+    var final = await client.zRangeWithScores("leaderboard", -10, -1, `withscores`);
+    console.log(final);
+    res.send({
+      status: 0,
+      message: "Get the article list successfully!",
+      data: final,
+    });
+    await client.quit();
+  }, 500);
+}
+
 exports.rankingArticleNumOfArticle = (req, res) => {
   setUpData(res);
 };
@@ -176,7 +210,7 @@ async function setUpData(res) {
         })
       }
       var final = await client.zRangeWithScores("leaderboard", -10, -1, `withscores`);
-      console.log(final);
+      // console.log(final);
       res.send({
         status: 0,
         message: "Get the article list successfully!",
@@ -184,7 +218,7 @@ async function setUpData(res) {
       });
 
       await client.quit();
-    }, 1500);
+    }, 500);
   });
 }
 
@@ -238,7 +272,7 @@ async function getNewest(req, res) {
               status: result.status,
             });
           });
-          await db.close();
+        await db.close();
       } finally {
         let final = new Array();
         for (let i = 0; i < count; i++) {
@@ -260,42 +294,42 @@ async function getNewest(req, res) {
         await client.connect();
         console.log("Redis connected");
 
-      var operation = [
-        {
-          $lookup: {
-            from: "category",
-            localField: "cateId",
-            foreignField: "cateId",
-            as: "category",
+        var operation = [
+          {
+            $lookup: {
+              from: "category",
+              localField: "cateId",
+              foreignField: "cateId",
+              as: "category",
+            },
           },
-        },
-        { $match: { isDelete: false, cateId: req.query.cate_id } },
-        {
-          $sort: {
-            pubDate: -1,
+          { $match: { isDelete: false, cateId: req.query.cate_id } },
+          {
+            $sort: {
+              pubDate: -1,
+            },
           },
-        },
-        {
-          $limit: 5,
-        },
-      ];
+          {
+            $limit: 5,
+          },
+        ];
 
-      // let count = 0;
-      await dbo
-        .collection("article")
-        .aggregate(operation)
-        .forEach(async function (result) {
-          result.category = result.category[0].name;
-          count = count + 1;
-          console.log(count);
-          console.log(result);
-          await client.hSet(`newestArticles:${count}`, {
-            title: result.title,
-            category: result.category,
-            pubDate: result.pubDate,
-            status: result.status,
+        // let count = 0;
+        await dbo
+          .collection("article")
+          .aggregate(operation)
+          .forEach(async function (result) {
+            result.category = result.category[0].name;
+            count = count + 1;
+            console.log(count);
+            console.log(result);
+            await client.hSet(`newestArticles:${count}`, {
+              title: result.title,
+              category: result.category,
+              pubDate: result.pubDate,
+              status: result.status,
+            });
           });
-        });
       } finally {
         let final = new Array();
         // Must consider a situation that the number of articles is smaller than the "limit" number.

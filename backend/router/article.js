@@ -32,4 +32,7 @@ router.get("/ranking", article_handler.rankingArticleNumOfArticle);
 
 router.get("/date", article_handler.newest_articles);
 
+router.get("/delrank/:id", article_handler.deleteArticleRankingById);
+
+
 module.exports = router;
